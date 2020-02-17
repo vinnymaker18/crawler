@@ -1,4 +1,4 @@
-package main
+package core 
 
 // Crawler program configuration
 type Config struct {
@@ -17,7 +17,7 @@ func (err *ConfigError) Error() string {
 }
 
 // Config file parser.
-func parseConfig(configFile string) (*Config, *ConfigError) {
+func ParseConfig(configFile string) (*Config, *ConfigError) {
 	// TODO - Change this to a proper implementation.
 	err := &ConfigError{
 		reason: "Bad config file",

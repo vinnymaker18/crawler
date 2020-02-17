@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+    "crawler/core"
 )
 
 const (
@@ -10,6 +11,6 @@ const (
 
 func main() {
 	fmt.Println("Application entry point.")
-	_, err := parseConfig(CONFIG_FILE)
+	_, err := core.ParseConfig(CONFIG_FILE)
 	fmt.Printf("%v\n", err.Error())
 }
