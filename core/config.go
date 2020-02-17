@@ -1,4 +1,9 @@
-package core 
+// Core package is the central module in the crawler program. All major
+// datatypes and interfaces are defined here and core crawler function-
+// ality is defined in terms of these concepts. Other packages like fe-
+// tchers, storage etc... implement and adapt these interfaces for
+// various article sources, storage provider types and so on.
+package core
 
 // Crawler program configuration
 type Config struct {

@@ -1,8 +1,8 @@
 package main
 
 import (
+	"crawler/core"
 	"fmt"
-    "crawler/core"
 )
 
 const (

@@ -8,7 +8,7 @@ import (
 
 // A single link/item fetched by fetcher.
 type LinkItem struct {
-	pageURL     url.URL
+	pageURL url.URL
 }
 
 // A Fetcher instance fetches links/items from a source.

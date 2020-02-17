@@ -1,5 +1,5 @@
 package core
 
 type LinkStore interface {
-    storeItem(LinkItem) (bool, error)
+	storeItem(LinkItem) (bool, error)
 }
