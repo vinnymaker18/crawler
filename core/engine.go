@@ -11,7 +11,7 @@ func crawl(fetcher Fetcher, store LinkStore) {
             break
         }
 
-        res, err := store.StoreItems(links)
+        res, err := store.StoreNewLinks(links)
         if err != nil || !res {
             break
         }
