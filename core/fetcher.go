@@ -13,5 +13,5 @@ type LinkItem struct {
 
 // A Fetcher instance fetches links/items from a source.
 type Fetcher interface {
-	fetch() ([]LinkItem, error)
+	Fetch() ([]LinkItem, error)
 }
