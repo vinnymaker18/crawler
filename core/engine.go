@@ -4,9 +4,9 @@ import (
     "time"
 )
 
-func crawl(fetcher Fetcher, store LinkStore) {
+func discoverNewLinks(fetcher LinkFetcher, store LinkStore) {
     for {
-        links, err := fetcher.Fetch()
+        links, err := fetcher.FetchLinks()
         if err != nil {
             break
         }
@@ -20,8 +20,9 @@ func crawl(fetcher Fetcher, store LinkStore) {
     }
 }
 
-func Run(fetchers []Fetcher, store LinkStore) {
+func Run(fetchers []LinkFetcher, store LinkStore) {
     for _, fetcher := range fetchers {
-        go crawl(fetcher, store)
+        go discoverNewLinks(fetcher, store)
     }
+
 }
