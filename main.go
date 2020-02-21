@@ -1,4 +1,4 @@
-package main
+package crawler
 
 import (
 	"crawler/core"
@@ -6,19 +6,17 @@ import (
 )
 
 const (
-	CONFIG_FILE = "./crawler_config"
+	CONFIG_FILE = "crawler_config"
 )
 
 func main() {
-	fmt.Println("Application entry point.")
 	cfg, err := core.ParseConfig(CONFIG_FILE)
 	if err != nil {
 		fmt.Printf("%v\n", err.Error())
 		return
 	}
 
-	fmt.Println("Crawler config file successfully read")
-	for key, val := range cfg.CfgKeyValues {
-		fmt.Printf("%v : %v\n", key, val)
-	}
+	appKey := cfg.CfgKeyValues["twitter-app-key"]
+	appSecret := cfg.CfgKeyValues["twitter-app-secret"]
+	fmt.Println(appKey, appSecret)
 }
