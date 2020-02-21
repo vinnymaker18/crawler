@@ -9,15 +9,15 @@
 package core
 
 import (
-    "bufio"
-    "os"
-    "strings"
+	"bufio"
+	"os"
+	"strings"
 )
 
-// Crawler program configuration, stored as key=value pairs, one 
+// Crawler program configuration, stored as key=value pairs, one
 // pair per line.
 type Config struct {
-    CfgKeyValues map[string]string
+	CfgKeyValues map[string]string
 }
 
 // Error in crawler configuration file.
@@ -32,25 +32,25 @@ func (err *ConfigError) Error() string {
 
 // Config file parser.
 func ParseConfig(configFilePath string) (*Config, *ConfigError) {
-    f, err := os.Open(configFilePath)
-    if err != nil {
-        reason := "Error opening config file - " + err.Error()
-        return nil, &ConfigError{ reason:reason }
-    }
-    defer f.Close()
+	f, err := os.Open(configFilePath)
+	if err != nil {
+		reason := "Error opening config file - " + err.Error()
+		return nil, &ConfigError{reason: reason}
+	}
+	defer f.Close()
 
-    scanner := bufio.NewScanner(f)
-    keyValues := make(map[string]string)
-    for scanner.Scan() {
-        line := scanner.Text()
-        words := strings.Split(line, "=")
-        keyValues[words[0]] = words[1]
-    }
+	scanner := bufio.NewScanner(f)
+	keyValues := make(map[string]string)
+	for scanner.Scan() {
+		line := scanner.Text()
+		words := strings.Split(line, "=")
+		keyValues[words[0]] = words[1]
+	}
 
-    if err := scanner.Err(); err != nil {
-        reason := "Error scanning config file - " + err.Error()
-        return nil, &ConfigError{ reason:reason}
-    }
+	if err := scanner.Err(); err != nil {
+		reason := "Error scanning config file - " + err.Error()
+		return nil, &ConfigError{reason: reason}
+	}
 
-    return &Config {CfgKeyValues: keyValues}, nil
+	return &Config{CfgKeyValues: keyValues}, nil
 }

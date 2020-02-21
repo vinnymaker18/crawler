@@ -1,12 +1,12 @@
 package fetchers
 
 import (
-    "crawler/core"
+	"crawler/core"
 )
 
 type TweetFetcher struct {
 }
 
 func (tweetFetcher *TweetFetcher) Fetch() ([]LinkItem, error) {
-    return nil, nil
+	return nil, nil
 }

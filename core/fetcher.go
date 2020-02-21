@@ -17,6 +17,6 @@ type LinkFetcher interface {
 
 // An article is a piece of text with some possible additional metadata.
 type ArticleItem struct {
-    // Article text
-    text string
+	// Article text
+	text string
 }
