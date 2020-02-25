@@ -31,7 +31,7 @@ func (err *ConfigError) Error() string {
 }
 
 // Config file parser.
-func ParseConfig(configFilePath string) (*Config, *ConfigError) {
+func ParseConfig(configFilePath string) (*Config, error) {
 	f, err := os.Open(configFilePath)
 	if err != nil {
 		reason := "Error opening config file - " + err.Error()

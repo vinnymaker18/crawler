@@ -1,8 +1,10 @@
-package crawler
+package main
 
 import (
-	"crawler/core"
 	"fmt"
+
+	"crawler/core"
+	"crawler/fetchers"
 )
 
 const (
@@ -16,7 +18,14 @@ func main() {
 		return
 	}
 
-	appKey := cfg.CfgKeyValues["twitter-app-key"]
-	appSecret := cfg.CfgKeyValues["twitter-app-secret"]
-	fmt.Println(appKey, appSecret)
+	fetcher, err := fetchers.NewTweetFetcher(cfg)
+	linkItems, err := fetcher.FetchLinks()
+	if err != nil {
+		fmt.Printf(err.Error())
+		return
+	}
+
+	for _, item := range linkItems {
+		fmt.Println(item.PageURL)
+	}
 }
