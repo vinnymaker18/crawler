@@ -21,11 +21,10 @@ const (
 // Limit the no. of links/tweets to fetch in a single request.
 const SINGLE_FETCH_LIMIT = 20
 
-// TweetFetcher is an authorized twitter api client for fetching urls
-// from twitter.
+// TweetFetcher is a twitter api client for fetching urls in tweets.
 type TweetFetcher struct {
-	client *twitter.Client
-	lastID int64
+	client      *twitter.Client
+	lastSinceID int64
 }
 
 // TweetFetcher constructor.
@@ -41,7 +40,7 @@ func NewTweetFetcher(cfg *core.Config) (*TweetFetcher, error) {
 
 	httpClient := appConfig.Client(oauth1.NoContext, token)
 	twClient := twitter.NewClient(httpClient)
-	return &TweetFetcher{client: twClient, lastID: 0}, nil
+	return &TweetFetcher{client: twClient, lastSinceID: 0}, nil
 }
 
 // Fetcher interface for TweetFetcher
@@ -49,6 +48,7 @@ func (tweetFetcher *TweetFetcher) FetchLinks() ([]core.LinkItem, error) {
 	tweets, _, err := tweetFetcher.client.Timelines.HomeTimeline(
 		&twitter.HomeTimelineParams{
 			Count:          SINGLE_FETCH_LIMIT,
+			SinceID:        tweetFetcher.lastSinceID,
 			ExcludeReplies: utils.NewBool(true)})
 
 	if err != nil {
@@ -58,6 +58,8 @@ func (tweetFetcher *TweetFetcher) FetchLinks() ([]core.LinkItem, error) {
 
 	urls := make([]core.LinkItem, 0, 20)
 	for _, tweet := range tweets {
+		tweetFetcher.lastSinceID = utils.Max(tweetFetcher.lastSinceID,
+			tweet.ID)
 		links, err := utils.ExtractURLs(tweet.Text)
 		if err == nil {
 			for _, link := range links {

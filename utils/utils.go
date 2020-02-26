@@ -6,6 +6,14 @@ import (
 	"regexp"
 )
 
+func Max(a, b int64) int64 {
+    if a > b {
+        return a
+    } else {
+        return b
+    }
+}
+
 // NewBool returns a pointer to a bool variable with the given value.
 func NewBool(value bool) *bool {
 	ret := value
