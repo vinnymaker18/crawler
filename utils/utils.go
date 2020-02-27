@@ -45,3 +45,16 @@ func ExtractURLs(text string) ([]*url.URL, error) {
 
 	return urls, nil
 }
+
+// A generic application error.
+type AppError struct {
+    cause string
+}
+
+func (err *AppError) Error() string {
+    return err.cause
+}
+
+func NewError(cause string) *AppError {
+    return &AppError{cause:cause}
+}
