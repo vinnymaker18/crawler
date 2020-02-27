@@ -6,6 +6,6 @@ type JobQueue interface {
 	// Producers queue new data items to be processed.
 	Enqueue([]string) (bool, error)
 
-	// Consumers remove data from the queue.
+	// Consumers remove(dequeue) data from the queue.
 	Dequeue(n int) ([]string, error)
 }
