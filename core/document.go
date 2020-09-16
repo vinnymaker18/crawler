@@ -1,6 +1,6 @@
 package core
 
-// All supported file types. We employ algorithms to extract natural
+// All supported file types. We use algorithms to mine natural
 // language text from urls/files of these types.
 const (
 	DOC_TEXT = 0
@@ -8,9 +8,18 @@ const (
 	DOC_PDF  = 2
 )
 
-// RawDocument is any web page/file that has text content e.g., web pages,
-// pdf files etc...
+// RawDocument is any fetched web page/file. Such documents are used
+// to mine interesting text.
 type RawDocument struct {
-	// Document content stored as a string.
-	Content string
+	// Detected mime type for this document. Mime type is sniffed using
+	// upto first 512 bytes of data.
+	mimeType string
+
+	// Raw stream of bytes that make up a file/doc
+	content []byte
+}
+
+// Article is the important(and interesting to analyse) textual content
+// mined from a raw doc.
+type Article struct {
 }

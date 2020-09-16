@@ -1,4 +1,4 @@
-module crawler
+module github.com/vinnymaker18/crawler
 
 go 1.12
 

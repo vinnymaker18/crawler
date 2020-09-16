@@ -3,8 +3,8 @@ package fetchers
 import (
 	"errors"
 
-	"crawler/core"
-	"crawler/utils"
+	"github.com/vinnymaker18/crawler/core"
+	"github.com/vinnymaker18/crawler/utils"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"

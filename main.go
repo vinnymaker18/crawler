@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"crawler/core"
-	"crawler/fetchers"
+	"github.com/vinnymaker18/crawler/core"
+	"github.com/vinnymaker18/crawler/fetchers"
 )
 
 const (
